@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'recommend_by_person.apps.RecommendByPersonConfig',
 ]
 
 MIDDLEWARE = [
