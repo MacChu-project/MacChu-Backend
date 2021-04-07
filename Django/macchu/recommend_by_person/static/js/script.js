@@ -46,17 +46,32 @@ $(function() {
         var name1 = '곰표';
         // $('#rank-change').load("static/js/rank.txt"); //삭제용참고용
         $("#beer-container").empty();
-        $('<img></img>').attr('src','static/images/'+ data[0]['name'] +'.png').appendTo('#ranking-container');
+        $('<img></img>').attr('src','static/images/'+ data[0]['name'] +'.png').appendTo('#recommended-container');
         $('<img></img>').attr('src','static/images/'+ data[0]['name'] +'.png').appendTo('#recommended-1');
-        $('<img></img>').attr('src','static/images/'+ data[1]['name'] +'.png').appendTo('#ranking-container');
-        $('<img></img>').attr('src','static/images/'+ data[2]['name'] +'.png').appendTo('#ranking-container');
-        $('<img></img>').attr('src','static/images/'+ data[3]['name'] +'.png').appendTo('#ranking-container');
-        $('<img></img>').attr('src','static/images/'+ data[4]['name'] +'.png').appendTo('#ranking-container');
+        $('<img></img>').attr('src','static/images/'+ data[1]['name'] +'.png').appendTo('#recommended-container');
+        $('<img></img>').attr('src','static/images/'+ data[2]['name'] +'.png').appendTo('#recommended-container');
+        $('<img></img>').attr('src','static/images/'+ data[3]['name'] +'.png').appendTo('#recommended-container');
+        $('<img></img>').attr('src','static/images/'+ data[4]['name'] +'.png').appendTo('#recommended-container');
+        $('<img></img>').attr('src','static/images/'+ data[5]['name'] +'.png').appendTo('#recommended-container');
+        $('<img></img>').attr('src','static/images/'+ data[6]['name'] +'.png').appendTo('#recommended-container');
+        $('<img></img>').attr('src','static/images/'+ data[7]['name'] +'.png').appendTo('#recommended-container');
+        $('<img></img>').attr('src','static/images/'+ data[8]['name'] +'.png').appendTo('#recommended-container');
+        $('<img></img>').attr('src','static/images/'+ data[9]['name'] +'.png').appendTo('#recommended-container');
+
+        
         $('<img></img>').attr('src','static/images/'+ data[5]['name'] +'.png').appendTo('#ranking-container');
-        $('<img></img>').attr('src','static/images/'+ data[6]['name'] +'.png').appendTo('#ranking-container');
-        $('<img></img>').attr('src','static/images/'+ data[7]['name'] +'.png').appendTo('#ranking-container');
-        $('<img></img>').attr('src','static/images/'+ data[8]['name'] +'.png').appendTo('#ranking-container');
+        $('<img></img>').attr('src','static/images/'+ data[4]['name'] +'.png').appendTo('#ranking-container');
+        $('<img></img>').attr('src','static/images/'+ data[3]['name'] +'.png').appendTo('#ranking-container');
         $('<img></img>').attr('src','static/images/'+ data[9]['name'] +'.png').appendTo('#ranking-container');
+        $('<img></img>').attr('src','static/images/'+ data[8]['name'] +'.png').appendTo('#ranking-container');
+        $('<img></img>').attr('src','static/images/'+ data[7]['name'] +'.png').appendTo('#ranking-container');
+        $('<img></img>').attr('src','static/images/'+ data[6]['name'] +'.png').appendTo('#ranking-container');
+        $('<img></img>').attr('src','static/images/'+ data[2]['name'] +'.png').appendTo('#ranking-container');
+        $('<img></img>').attr('src','static/images/'+ data[1]['name'] +'.png').appendTo('#ranking-container');
+        $('<img></img>').attr('src','static/images/'+ data[0]['name'] +'.png').appendTo('#ranking-container');
+
+        
+
 
     
         
