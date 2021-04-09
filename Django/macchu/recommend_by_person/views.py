@@ -3,4 +3,4 @@ from django.views.generic.base import View, TemplateView
 from django.http import HttpResponse, JsonResponse
 
 class HomeView(TemplateView):
-    template_name = 'home.html'
+    template_name = 'recommend_by_person/home.html'

@@ -22,4 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('', HomeView.as_view(), name="home"),
+
+    path('recommend_by_person/', include('recommend_by_person.urls')),
 ]
