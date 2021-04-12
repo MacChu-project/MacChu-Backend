@@ -189,22 +189,25 @@
               setTimeout(function() {
                 $('.location').empty();
                 $('<div></div>').attr('class','recommended-beer-box').appendTo('.location');
-                $('.location').attr('style','display:unset;')
-                $('<div></div>').attr('class','recommend-beer-list').appendTo('.recommended-beer-box');
-                $('<table></table>').attr('class', 'beer-table').appendTo('.recommended-beer-box');
+                $('.location').attr('style','display:unset;text-align:center;');
+                $('.recommended-beer-box').attr('style','margin-top:100px;max-width:1400px;display:inline-block;');
+                $('<div></div>').attr('class','recommend-beer-list').attr('style','padding:30px;').appendTo('.recommended-beer-box');
+                $('<table></table>').attr('class', 'beer-table').attr('style','width:100%;').appendTo('.recommend-beer-list');
                 $('<thead></thead>').attr('class', 'beer-thead').appendTo('.beer-table');
                 $('<tr></tr>').appendTo('.beer-thead');
                 $('<th></th>').text('맥주 이름').appendTo('.beer-thead tr');
                 $('<th></th>').text('생산 국가').appendTo('.beer-thead tr');
                 $('<th></th>').text('ABV').appendTo('.beer-thead tr');
-                var beer_tbody = $('<tbody></tbody>').attr('class', 'beer-tbody');
+                var beer_tbody = $('<tbody></tbody>').attr('class', 'beer-tbody').appendTo('.beer-table');
+                alert(recommended_beer_list[0]['name_ko'])
                 for(var i=0;i<recommended_beer_list.length;i++){
                   var tr = $('<tr></tr>');
-                  $('<td></td>').text(recommended_beer_list[i]['name']).appendTo(tr);
+                  $('<td></td>').text(recommended_beer_list[i]['name_ko']).appendTo(tr);
                   $('<td></td>').text(recommended_beer_list[i]['country']).appendTo(tr);
                   $('<td></td>').text(recommended_beer_list[i]['ABV']).appendTo(tr);
                   tr.appendTo(beer_tbody);
                 }
+                
                 $('<div></div>').attr('class','ranked-beer-list').appendTo('.recommended-beer-box');
                 // 랭킹 맥주 리스트 만들기
                 
