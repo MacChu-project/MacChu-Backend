@@ -189,9 +189,10 @@
               setTimeout(function() {
                 $('.location').empty();
                 $('<div></div>').attr('class','recommended-beer-box').appendTo('.location');
-                $('.location').attr('style','display:unset;')
-                $('<div></div>').attr('class','recommend-beer-list').appendTo('.recommended-beer-box');
-                $('<table></table>').attr('class', 'beer-table').appendTo('.recommended-beer-box');
+                $('.location').attr('style','display:unset;text-align:center;');
+                $('.recommended-beer-box').attr('style','margin-top:100px;max-width:1400px;display:inline-block;');
+                $('<div></div>').attr('class','recommend-beer-list').attr('style','padding:30px;').appendTo('.recommended-beer-box');
+                $('<table></table>').attr('class', 'beer-table').attr('style','width:100%;').appendTo('.recommend-beer-list');
                 $('<thead></thead>').attr('class', 'beer-thead').appendTo('.beer-table');
                 $('<tr></tr>').appendTo('.beer-thead');
                 $('<th></th>').text('맥주 이름').appendTo('.beer-thead tr');
