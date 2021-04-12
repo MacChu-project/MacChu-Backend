@@ -195,20 +195,27 @@
                 $('<table></table>').attr('class', 'beer-table').attr('style','width:100%;').appendTo('.recommend-beer-list');
                 $('<thead></thead>').attr('class', 'beer-thead').appendTo('.beer-table');
                 $('<tr></tr>').appendTo('.beer-thead');
+                $('<th></th>').text(' ').appendTo('.beer-thead tr');
                 $('<th></th>').text('맥주 이름').appendTo('.beer-thead tr');
                 $('<th></th>').text('생산 국가').appendTo('.beer-thead tr');
                 $('<th></th>').text('ABV').appendTo('.beer-thead tr');
                 var beer_tbody = $('<tbody></tbody>').attr('class', 'beer-tbody').appendTo('.beer-table');
-                alert(recommended_beer_list[0]['name_ko'])
                 for(var i=0;i<recommended_beer_list.length;i++){
-                  var tr = $('<tr></tr>');
+                  var tr = $('<tr></tr>').attr('style','text-align:center;');
+                  $('<td></td>').append($('<img></img>').attr('src','/static/image/beer_images/' + recommended_beer_list[i]['beer_idx'] + '.jpg').attr('style','width:80px;height:100px;')).appendTo(tr);
                   $('<td></td>').text(recommended_beer_list[i]['name_ko']).appendTo(tr);
                   $('<td></td>').text(recommended_beer_list[i]['country']).appendTo(tr);
                   $('<td></td>').text(recommended_beer_list[i]['ABV']).appendTo(tr);
                   tr.appendTo(beer_tbody);
                 }
-                
-                $('<div></div>').attr('class','ranked-beer-list').appendTo('.recommended-beer-box');
+                $('<button></button>').text('다른 맥주 추천받기').attr('class','recommend-system-reroad').attr('id','recommend-system-reroad').appendTo('#home');
+                $('#recommend-system-reroad').on('click',function(event){
+                  action_popup.confirm('다른 맥주를 추천받으시겠습니까?',function(){
+                    location.reload(true);
+                    location.href = location.href;
+                    history.go(0);
+                  });     
+                });
                 // 랭킹 맥주 리스트 만들기
                 
               },1000);
@@ -217,21 +224,8 @@
               alert(err);
             }
           })
-          $('<button></button>').text('다른 맥주 추천받기').attr('class','recommend-system-reroad').attr('id','recommend-system-reroad').appendTo('#home');
-          $('#recommend-system-reroad').on('click',function(event){
-            action_popup.confirm('다른 맥주를 추천받으시겠습니까?',function(){
-              location.reload(true);
-              location.href = location.href;
-              history.go(0);
-            });
-              
-          });
-
         });
       }
-      
-      
-
     });
     $(".modal_close").on("click", function () {
         action_popup.close(this);
