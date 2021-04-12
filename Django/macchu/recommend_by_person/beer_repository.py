@@ -52,7 +52,7 @@ class BeerRepository:
         cursor.execute(sql, (int(beer_idx),))
 
         row = cursor.fetchone() # 반환 값은 tuple (...)
-        keys = ["beer_idx, name_ko", "country", "ABV"]
+        keys = ["beer_idx", "name_ko", "country", "ABV"]
         
         result = dict(zip(keys, row))
             

@@ -26,12 +26,6 @@ class recommendation_system:
 
         recommended_beers = self.find_sim_beer(beer_df, taste_sim, beers)
 
-        # result = []
-
-        # for recommended_beer in recommended_beers:
-            
-        #     recommended_beer_dict = { 'beer_idx':int(recommended_beer) }
-        #     result.append(recommended_beer_dict)
         result = self.get_beer_info(recommended_beers)
 
         return result
@@ -70,8 +64,13 @@ class recommendation_system:
                 else:
                     sim_beers.append(sim_beer)
                     limit_add_beer += 1
-                    if limit_add_beer == 3:
+                    if len(beers) == 3 and limit_add_beer == 3:
                         break
+                    elif len(beers) == 2 and limit_add_beer == 5:
+                        break
+                    if len(beers) == 1 and limit_add_beer == 9:
+                        break
+                    
 
         # 입력한 세 개의 상품에 의해 추출된 9개의 상품 index를 리스트 형식으로 return
         return sim_beers
