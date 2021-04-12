@@ -198,14 +198,16 @@
                 $('<th></th>').text('맥주 이름').appendTo('.beer-thead tr');
                 $('<th></th>').text('생산 국가').appendTo('.beer-thead tr');
                 $('<th></th>').text('ABV').appendTo('.beer-thead tr');
-                var beer_tbody = $('<tbody></tbody>').attr('class', 'beer-tbody');
+                var beer_tbody = $('<tbody></tbody>').attr('class', 'beer-tbody').appendTo('.beer-table');
+                alert(recommended_beer_list[0]['name_ko'])
                 for(var i=0;i<recommended_beer_list.length;i++){
                   var tr = $('<tr></tr>');
-                  $('<td></td>').text(recommended_beer_list[i]['name']).appendTo(tr);
+                  $('<td></td>').text(recommended_beer_list[i]['name_ko']).appendTo(tr);
                   $('<td></td>').text(recommended_beer_list[i]['country']).appendTo(tr);
                   $('<td></td>').text(recommended_beer_list[i]['ABV']).appendTo(tr);
                   tr.appendTo(beer_tbody);
                 }
+                
                 $('<div></div>').attr('class','ranked-beer-list').appendTo('.recommended-beer-box');
                 // 랭킹 맥주 리스트 만들기
                 

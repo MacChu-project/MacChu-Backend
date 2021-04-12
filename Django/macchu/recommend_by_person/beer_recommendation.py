@@ -11,7 +11,12 @@ class recommendation_system:
         '''
 
         # 맥주 데이터를 DataFrame 형식으로 load
-        beer_df = pd.read_csv('recommend_by_person/data-files/sample.csv')
+        from sqlalchemy import create_engine
+
+        engine = create_engine('mysql://admin:a123456789@macchu-db.cmq0yxrruhsw.ap-northeast-2.rds.amazonaws.com/MacChu', convert_unicode=True)
+        conn = engine.connect()
+
+        beer_df = pd.read_sql_table('beer_taste', conn)
 
         # 특정 맥주의 index 입력(세 개)
         beers = list(map(int, key.split(',')))
@@ -21,12 +26,13 @@ class recommendation_system:
 
         recommended_beers = self.find_sim_beer(beer_df, taste_sim, beers)
 
-        result = []
+        # result = []
 
-        for recommended_beer in recommended_beers:
+        # for recommended_beer in recommended_beers:
             
-            recommended_beer_dict = { 'beer_idx':int(recommended_beer) }
-            result.append(recommended_beer_dict)
+        #     recommended_beer_dict = { 'beer_idx':int(recommended_beer) }
+        #     result.append(recommended_beer_dict)
+        result = self.get_beer_info(recommended_beers)
 
         return result
     
@@ -69,3 +75,14 @@ class recommendation_system:
 
         # 입력한 세 개의 상품에 의해 추출된 9개의 상품 index를 리스트 형식으로 return
         return sim_beers
+
+    def get_beer_info(self, beer_idxes):
+        from .beer_repository import BeerRepository
+
+        beer_list = []
+        beer_db = BeerRepository()
+        
+        for beer_idx in beer_idxes:
+            beer_list.append(beer_db.recommended_beer_info(beer_idx))
+
+        return beer_list
