@@ -11,7 +11,12 @@ class recommendation_system:
         '''
 
         # 맥주 데이터를 DataFrame 형식으로 load
-        beer_df = pd.read_csv('recommend_by_person/data-files/sample.csv')
+        from sqlalchemy import create_engine
+
+        engine = create_engine('mysql://admin:a123456789@macchu-db.cmq0yxrruhsw.ap-northeast-2.rds.amazonaws.com/MacChu', convert_unicode=True)
+        conn = engine.connect()
+
+        beer_df = pd.read_sql_table('beer_taste', conn)
 
         # 특정 맥주의 index 입력(세 개)
         beers = list(map(int, key.split(',')))
