@@ -3,7 +3,7 @@ from django.views.generic.base import View, TemplateView
 from django.http import HttpResponse, JsonResponse
 
 class HomeView(TemplateView):
-    template_name = 'recommend_by_person/home.html'
+    template_name = 'recommend_by_person/recommendation_page.html'
 
 class SelectView(View):
     def get(self, request, key):

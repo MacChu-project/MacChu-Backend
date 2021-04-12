@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js" integrity="sha384-3LK/3kTpDE/Pkp8gTNp2gR/2gOiwQ6QaO7Td0zV76UFJVhqLl4Vl3KL1We6q6wR9" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link rel='stylesheet' href='/static/css/style.css'>
+    <link rel='stylesheet' href='../css/style.css'>
   </head>
   <body>
     <div class="wrapper">
@@ -14,11 +14,11 @@
       <!-- HEADER -->
       <header>
         <div class="netflixLogo">
-          <a id="logo" href="{% url 'home' %}"><div id='logo'>MacChu</div></a>
+          <a id="logo" href="#home"><div id='logo'>MacChu</div></a>
         </div>      
         <nav class="main-nav">                
-          <a href="{% url 'home' %}">Home</a>
-          <a href="{% url 'recommend' %}">Beer Recommend</a>
+          <a href="home.html">Home</a>
+          <a href="recommendation_page.html">Beer Recommend</a>
       </header>
       <!-- END OF HEADER -->
       
@@ -66,38 +66,3 @@
     </div>
   </body>
 </html>
-
-<script type='text/javascript'>
-  $(function(){
-    // $.ajax({
-    //   'url':'',
-    //   'method':'GET',
-    //   'success': function(beer_data, status, xhr){
-    //     // Popular of Beer에 맥주 추가
-    //     for(var i=0;i<beer_data.length;i++){
-    //       $('<img></img>').attr('id', beer_data[i]).attr('src','/static/image/beer_image/'+beer_data[i]+'.jpg').appendTo('#home .box');
-    //     }
-    //     // Recommended Beer Ranking에 맥주 추가
-    //     for(var i=0;i<beer_data.length;i++){
-    //       $('<img></img>').attr('id', beer_data[i]).attr('src','/static/image/beer_image/'+beer_data[i]+'.jpg').appendTo('#myList .box');
-    //     }
-    //   },
-    //   'error':function(xhr, status, error){
-    //     alert(err);  
-    //   }
-    // });
-    // $('.main-container .location .box').on('click','img', function(){
-    //   $.ajax({
-    //     'url':'' + $(this).attr('id'),
-    //     'method':'GET',
-    //     'success': function(beer_data, status, xhr){
-
-    //     },
-    //     'error':function(xhr, status, error){
-    //             alert(err);
-    //     }
-    //   });
-    // });
-    
-  });
-</script>
