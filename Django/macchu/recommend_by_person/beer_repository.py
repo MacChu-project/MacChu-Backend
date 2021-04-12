@@ -48,11 +48,11 @@ class BeerRepository:
         conn = pymysql.connect(**self.connection_info)
         cursor = conn.cursor()
 
-        sql = "select name_ko, country, ABV from beer where beer_idx = %s"
+        sql = "select beer_idx, name_ko, country, ABV from beer where beer_idx = %s"
         cursor.execute(sql, (int(beer_idx),))
 
         row = cursor.fetchone() # 반환 값은 tuple (...)
-        keys = ["name_ko", "country", "ABV"]
+        keys = ["beer_idx, name_ko", "country", "ABV"]
         
         result = dict(zip(keys, row))
             
