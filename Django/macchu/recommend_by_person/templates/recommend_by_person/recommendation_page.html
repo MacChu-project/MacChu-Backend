@@ -9,6 +9,7 @@
   <link rel='stylesheet' href='/static/css/style.css'>
 </head>
 <body>
+
   <div class="wrapper">
 
     <!-- HEADER -->
@@ -188,26 +189,36 @@
               // 맥주 추천 중 이미지를 노출하는 시간 동안 delay 시켰다가 추천된 리스트 노출
               setTimeout(function() {
                 $('.location').empty();
+                $('<h2></h2>').text('추천 결과').attr('style','margin-top:150px;').appendTo('.location');
                 $('<div></div>').attr('class','recommended-beer-box').appendTo('.location');
                 $('.location').attr('style','display:unset;text-align:center;');
-                $('.recommended-beer-box').attr('style','margin-top:100px;max-width:1400px;display:inline-block;');
+                $('.recommended-beer-box').attr('style','margin:auto;margin-top:30px;max-width:1400px;grid-template-columns: repeat(1, 2fr 1fr);');
                 $('<div></div>').attr('class','recommend-beer-list').attr('style','padding:30px;').appendTo('.recommended-beer-box');
-                $('<table></table>').attr('class', 'beer-table').attr('style','width:100%;').appendTo('.recommend-beer-list');
+                $('<div></div>').attr('class','recommend-info').attr('style','padding:30px;').appendTo('.recommended-beer-box');
+                $('<table></table>').attr('class', 'beer-table').attr('style','width:100%;border:1px solid gray;border-collapse:collapse;').appendTo('.recommend-beer-list');
                 $('<thead></thead>').attr('class', 'beer-thead').appendTo('.beer-table');
-                $('<tr></tr>').appendTo('.beer-thead');
+                $('<tr></tr>').attr('style','border-bottom:1px solid gray;').appendTo('.beer-thead');
                 $('<th></th>').text(' ').appendTo('.beer-thead tr');
                 $('<th></th>').text('맥주 이름').appendTo('.beer-thead tr');
                 $('<th></th>').text('생산 국가').appendTo('.beer-thead tr');
                 $('<th></th>').text('ABV').appendTo('.beer-thead tr');
                 var beer_tbody = $('<tbody></tbody>').attr('class', 'beer-tbody').appendTo('.beer-table');
                 for(var i=0;i<recommended_beer_list.length;i++){
-                  var tr = $('<tr></tr>').attr('style','text-align:center;');
-                  $('<td></td>').append($('<img></img>').attr('src','/static/image/beer_images/' + recommended_beer_list[i]['beer_idx'] + '.jpg').attr('style','width:80px;height:100px;')).appendTo(tr);
+                  var tr = $('<tr></tr>').attr('style','text-align:center;border-bottom:1px solid gray;');
+                  $('<td></td>').append($('<img></img>').attr('src','/static/image/beer_images/' + recommended_beer_list[i]['beer_idx'] + '.jpg').attr('style','width:60px;height:80px;')).appendTo(tr);
                   $('<td></td>').text(recommended_beer_list[i]['name_ko']).appendTo(tr);
                   $('<td></td>').text(recommended_beer_list[i]['country']).appendTo(tr);
                   $('<td></td>').text(recommended_beer_list[i]['ABV']).appendTo(tr);
                   tr.appendTo(beer_tbody);
                 }
+                $('<table></table>').attr('class', 'info-table').attr('style','width:100%;height:100%;border-collapse:collapse;border-bottom:1px solid gray;').appendTo('.recommend-info');
+                $('<thead></thead>').append($('<tr></tr>').attr('style','border-bottom:1px solid gray;font-size:30px;background:gray;').append($('<th></th>').text('상세 설명'))).appendTo('.info-table');
+                $('<tbody></tbody>').attr('class', 'info-tbody').appendTo('.info-table');
+                $('<tr></tr>').attr('style','border-bottom:1px solid gray;').append($('<td></td>').append($('<img></img>').attr('src','/static/image/beer_images/' + recommended_beer_list[0]['beer_idx'] + '.jpg').attr('style','width:200px;height:300px;margin:50px;border:10px solid #FFAF00;'))).attr('style','text-align:center;').appendTo('.info-tbody');
+                $('<tr></tr>').attr('style','border-bottom:1px solid gray;').append($('<td></td>').text('맥주 이름 : '+ recommended_beer_list[0]['name_ko'])).appendTo('.info-tbody');
+                $('<tr></tr>').attr('style','border-bottom:1px solid gray;').append($('<td></td>').text('국가 : '+ recommended_beer_list[0]['country'])).appendTo('.info-tbody');
+                $('<tr></tr>').attr('style','border-bottom:1px solid gray;').append($('<td></td>').text('ABV : '+ recommended_beer_list[0]['ABV'])).appendTo('.info-tbody');
+                $('<tr></tr>').attr('style','border-bottom:1px solid gray;').append($('<td></td>').text('기타 사항 : '+ recommended_beer_list[0]['description'])).appendTo('.info-tbody');
                 $('<button></button>').text('다른 맥주 추천받기').attr('class','recommend-system-reroad').attr('id','recommend-system-reroad').appendTo('#home');
                 $('#recommend-system-reroad').on('click',function(event){
                   action_popup.confirm('다른 맥주를 추천받으시겠습니까?',function(){
@@ -216,6 +227,14 @@
                     history.go(0);
                   });     
                 });
+                $('.beer-tbody tr').hover(function(){
+                  var hover_index = $(this).index();
+                  $('.info-table .info-tbody tr td img').attr('src','/static/image/beer_images/' + recommended_beer_list[hover_index]['beer_idx'] + '.jpg');
+                  $('.info-table .info-tbody tr:nth-child(2) td').text('맥주 이름 : '+ recommended_beer_list[hover_index]['name_ko']);
+                  $('.info-table .info-tbody tr:nth-child(3) td').text('국가 : '+ recommended_beer_list[hover_index]['country']);
+                  $('.info-table .info-tbody tr:nth-child(4) td').text('ABV : '+ recommended_beer_list[hover_index]['ABV']);
+                  $('.info-table .info-tbody tr:nth-child(5) td').text('기타 사항 : '+ recommended_beer_list[hover_index]['description']);
+                })
                 // 랭킹 맥주 리스트 만들기
                 
               },1000);
