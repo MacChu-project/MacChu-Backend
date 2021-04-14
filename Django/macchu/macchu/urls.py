@@ -24,4 +24,5 @@ urlpatterns = [
     path('', HomeView.as_view(), name="home"),
 
     path('recommend_by_person/', include('recommend_by_person.urls')),
+    path('search_beer/', include('search_beer.urls')),
 ]

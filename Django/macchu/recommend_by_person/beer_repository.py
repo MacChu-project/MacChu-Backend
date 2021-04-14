@@ -59,3 +59,53 @@ class BeerRepository:
         conn.close()
 
         return result
+    
+    def popular_beer_ranking_info(self):
+        import pymysql
+
+        conn = pymysql.connect(**self.connection_info)
+        cursor = conn.cursor()
+
+        # 테이블 이름, 컬럼 확인해서 index 10개 가져오기 - 수정해야 함
+        sql_for_index = "select beer_idx from pop_beer order by count limit 10"
+        cursor.execute(sql)
+
+        pop_beer_index = cursor.fetchone() # 반환 값은 tuple (...)
+
+        sql_for_pop = "select beer_idx, name_ko, country, ABV, description from beer where beer_idx = %s"
+        cursor.execute(sql, (int(pop_beer_index),))
+
+
+        row = cursor.fetchone()
+        keys = ["beer_idx", "name_ko", "country", "ABV", "description"]
+        
+        result = dict(zip(keys, row))
+            
+        conn.close()
+
+        return result
+
+    # def recommended_beer_ranking_info(self):
+    #     import pymysql
+
+    #     conn = pymysql.connect(**self.connection_info)
+    #     cursor = conn.cursor()
+
+    #     # 테이블 이름, 컬럼 확인해서 index 10개 가져오기 - 수정해야 함
+    #     sql_for_index = "select beer_idx from recommended_beer order by count limit 10"
+    #     cursor.execute(sql)
+
+    #     pop_beer_index = cursor.fetchone() # 반환 값은 tuple (...)
+
+    #     sql_for_pop = "select beer_idx, name_ko, country, ABV, description from beer where beer_idx = %s"
+    #     cursor.execute(sql, (int(pop_beer_index),))
+
+
+    #     row = cursor.fetchone()
+    #     keys = ["beer_idx", "name_ko", "country", "ABV", "description"]
+        
+    #     result = dict(zip(keys, row))
+            
+    #     conn.close()
+
+    #     return result

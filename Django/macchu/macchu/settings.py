@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'd4y$)4@qs6$d+%__hhnn=5a$ndwukrcl-ih7=+)k7h$pw7x#6j'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '3.35.195.155']
 
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'recommend_by_person.apps.RecommendByPersonConfig',
+    'search_beer.apps.SearchBeerConfig',
 ]
 
 MIDDLEWARE = [
