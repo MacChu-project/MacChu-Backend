@@ -27,10 +27,10 @@
       <section class="main-container" >
         <div class="location" id="home">
           <h1 id="home">Popular of Beer</h1>
-          <div class="box">
+          <div class="box" id='pop_box'>
           </div>
           <h1 id="myList">Recommended Beer Ranking</h1>
-          <div class="box">
+          <div class="box" id='recommend_box'>
           </div>
         </div>
         
@@ -50,16 +50,17 @@
 <script type='text/javascript'>
   $(function(){
     $.ajax({
-      'url':'/rank/',
+      'url':'/rank',
       'method':'GET',
+      'data-type':'json',
       'success': function(beer_data, status, xhr){
         // Popular of Beer에 맥주 추가
         for(var i=0;i<beer_data[0].length;i++){
-          $('<img></img>').attr('id', beer_data[0][i]).attr('src','/static/image/beer_image/'+beer_data[0][i]+'.jpg').appendTo('#home .box');
+          $('<img></img>').attr('id', beer_data[0][i]['beer_idx']).attr('src','/static/image/beer_images/'+beer_data[0][i]['beer_idx']+'.jpg').appendTo('#pop_box');
         }
         // Recommended Beer Ranking에 맥주 추가
         for(var i=0;i<beer_data[1].length;i++){
-          $('<img></img>').attr('id', beer_data[1][i]).attr('src','/static/image/beer_image/'+beer_data[1][i]+'.jpg').appendTo('#myList .box');
+          $('<img></img>').attr('id', beer_data[1][i]['beer_idx']).attr('src','/static/image/beer_images/'+beer_data[1][i]['beer_idx']+'.jpg').appendTo('#recommend_box');
         }
       },
       'error':function(xhr, status, error){
