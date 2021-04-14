@@ -16,12 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from .views import HomeView
+from .views import HomeView, RankView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('', HomeView.as_view(), name="home"),
+    path('rank/', RankView.as_view(), name="rank"),
 
     path('recommend_by_person/', include('recommend_by_person.urls')),
     path('search_beer/', include('search_beer.urls')),

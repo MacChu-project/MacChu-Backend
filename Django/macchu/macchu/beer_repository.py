@@ -41,3 +41,46 @@ class BeerRepository:
         conn.close()
 
         return result
+
+    def user_click_rank(self):
+        import pymysql
+
+        conn = pymysql.connect(**self.connection_info)
+        cursor = conn.cursor()
+
+        sql = "select beer_idx, user_click_count from beer_rank Order by user_click_count desc Limit 12"
+        cursor.execute(sql)
+
+        rows = cursor.fetchall() # 반환 값은 tuple (...)
+        keys = ["beer_idx", "user_click_count"]
+        
+        result = []
+        for row in rows:
+            row_dict = { key:value for key, value in zip(keys, row) }
+            result.append(row_dict)
+            
+        conn.close()
+
+        return result
+
+    def recommend_rank(self):
+        import pymysql
+
+        conn = pymysql.connect(**self.connection_info)
+        cursor = conn.cursor()
+
+        sql = "select beer_idx, recommend_count from beer_rank Order by recommend_count desc Limit 12"
+        cursor.execute(sql)
+
+        rows = cursor.fetchall() # 반환 값은 tuple (...)
+        keys = ["beer_idx", "recommend_count"]
+        
+        #result = { key:value for key, value in zip(keys, row) }
+        result = []
+        for row in rows:
+            row_dict = { key:value for key, value in zip(keys, row) }
+            result.append(row_dict)
+            
+        conn.close()
+
+        return result
