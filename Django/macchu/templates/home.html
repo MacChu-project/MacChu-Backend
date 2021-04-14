@@ -28,25 +28,9 @@
         <div class="location" id="home">
           <h1 id="home">Popular of Beer</h1>
           <div class="box">
-            <a href=""><img src="../static/image/beer_images/100.jpg" alt=""></a>
-            <a href=""><img src="../static/image/beer_images/101.jpg" alt=""></a>
-            <a href=""><img src="../static/image/beer_images/102.jpg" alt=""></a>      
-            <a href=""><img src="../static/image/beer_images/103.jpg" alt=""></a>
-            <a href=""><img src="../static/image/beer_images/104.jpg" alt=""></a>
-            <a href=""><img src="../static/image/beer_images/105.jpg" alt=""></a>
-            <a href=""><img src="../static/image/beer_images/106.jpg" alt=""></a>
-            <a href=""><img src="../static/image/beer_images/107.jpg" alt=""></a>
           </div>
           <h1 id="myList">Recommended Beer Ranking</h1>
           <div class="box">
-            <a href=""><img src="../static/image/beer_images/108.jpg" alt=""></a>
-            <a href=""><img src="../static/image/beer_images/109.jpg" alt=""></a>
-            <a href=""><img src="../static/image/beer_images/110.jpg" alt=""></a>
-            <a href=""><img src="../static/image/beer_images/111.jpg" alt=""></a>
-            <a href=""><img src="../static/image/beer_images/112.jpg" alt=""></a>
-            <a href=""><img src="../static/image/beer_images/113.jpg" alt=""></a>
-            <a href=""><img src="../static/image/beer_images/114.jpg" alt=""></a>
-            <a href=""><img src="../static/image/beer_images/115.jpg" alt=""></a> 
           </div>
         </div>
         
@@ -65,23 +49,23 @@
 
 <script type='text/javascript'>
   $(function(){
-    // $.ajax({
-    //   'url':'',
-    //   'method':'GET',
-    //   'success': function(beer_data, status, xhr){
-    //     // Popular of Beer에 맥주 추가
-    //     for(var i=0;i<beer_data.length;i++){
-    //       $('<img></img>').attr('id', beer_data[i]).attr('src','/static/image/beer_image/'+beer_data[i]+'.jpg').appendTo('#home .box');
-    //     }
-    //     // Recommended Beer Ranking에 맥주 추가
-    //     for(var i=0;i<beer_data.length;i++){
-    //       $('<img></img>').attr('id', beer_data[i]).attr('src','/static/image/beer_image/'+beer_data[i]+'.jpg').appendTo('#myList .box');
-    //     }
-    //   },
-    //   'error':function(xhr, status, error){
-    //     alert(err);  
-    //   }
-    // });
+    $.ajax({
+      'url':'/rank/',
+      'method':'GET',
+      'success': function(beer_data, status, xhr){
+        // Popular of Beer에 맥주 추가
+        for(var i=0;i<beer_data[0].length;i++){
+          $('<img></img>').attr('id', beer_data[0][i]).attr('src','/static/image/beer_image/'+beer_data[0][i]+'.jpg').appendTo('#home .box');
+        }
+        // Recommended Beer Ranking에 맥주 추가
+        for(var i=0;i<beer_data[1].length;i++){
+          $('<img></img>').attr('id', beer_data[1][i]).attr('src','/static/image/beer_image/'+beer_data[1][i]+'.jpg').appendTo('#myList .box');
+        }
+      },
+      'error':function(xhr, status, error){
+        alert(err);  
+      }
+    });
     // $('.main-container .location .box').on('click','img', function(){
     //   $.ajax({
     //     'url':'' + $(this).attr('id'),
