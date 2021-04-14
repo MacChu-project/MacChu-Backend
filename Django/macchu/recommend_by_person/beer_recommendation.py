@@ -26,6 +26,10 @@ class recommendation_system:
 
         recommended_beers = self.find_sim_beer(beer_df, taste_sim, beers)
 
+        from .beer_repository import BeerRepository
+        beer_db = BeerRepository()
+        beer_db.recommend_count(recommended_beers)
+
         result = self.get_beer_info(recommended_beers)
 
         return result

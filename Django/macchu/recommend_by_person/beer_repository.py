@@ -66,7 +66,6 @@ class BeerRepository:
         conn = pymysql.connect(**self.connection_info)
         cursor = conn.cursor()
 
-        # 테이블 이름, 컬럼 확인해서 index 10개 가져오기 - 수정해야 함
         sql_for_index = "select beer_idx from pop_beer order by count limit 10"
         cursor.execute(sql)
 
@@ -85,27 +84,35 @@ class BeerRepository:
 
         return result
 
-    # def recommended_beer_ranking_info(self):
-    #     import pymysql
+    def user_click_count(self, beers_click):
+        import pymysql
 
-    #     conn = pymysql.connect(**self.connection_info)
-    #     cursor = conn.cursor()
+        conn = pymysql.connect(**self.connection_info)
+        cursor = conn.cursor()
 
-    #     # 테이블 이름, 컬럼 확인해서 index 10개 가져오기 - 수정해야 함
-    #     sql_for_index = "select beer_idx from recommended_beer order by count limit 10"
-    #     cursor.execute(sql)
+        beers = list(map(int, beers_click.split(',')))
 
-    #     pop_beer_index = cursor.fetchone() # 반환 값은 tuple (...)
+        sql = "UPDATE beer_rank SET user_click_count = user_click_count + 1 WHERE beer_idx = %s"
 
-    #     sql_for_pop = "select beer_idx, name_ko, country, ABV, description from beer where beer_idx = %s"
-    #     cursor.execute(sql, (int(pop_beer_index),))
+        for beer in beers:
+            cursor.execute(sql, (int(beer)))
 
-
-    #     row = cursor.fetchone()
-    #     keys = ["beer_idx", "name_ko", "country", "ABV", "description"]
-        
-    #     result = dict(zip(keys, row))
+        conn.commit()
             
-    #     conn.close()
+        conn.close()
 
-    #     return result
+    def recommend_count(self, beers_recommend):
+        import pymysql
+
+        conn = pymysql.connect(**self.connection_info)
+        cursor = conn.cursor()
+
+        sql = "UPDATE beer_rank SET recommend_count = recommend_count + 1 WHERE beer_idx = %s"
+
+        print(beers_recommend)
+        for beer in beers_recommend:
+            cursor.execute(sql, (int(beer)))
+
+        conn.commit()
+            
+        conn.close()
