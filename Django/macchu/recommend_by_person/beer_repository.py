@@ -109,7 +109,6 @@ class BeerRepository:
 
         sql = "UPDATE beer_rank SET recommend_count = recommend_count + 1 WHERE beer_idx = %s"
 
-        print(beers_recommend)
         for beer in beers_recommend:
             cursor.execute(sql, (int(beer)))
 
