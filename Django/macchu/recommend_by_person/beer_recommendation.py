@@ -19,7 +19,10 @@ class recommendation_system:
         beer_df = pd.read_sql_table('beer_taste', conn)
 
         # 특정 맥주의 index 입력(세 개)
-        beers = list(map(int, key.split(',')))
+        beers1 = list(map(int, key.split(',')))
+        beers = []
+        for beer in beers1:
+            beers.append(beer-1) 
 
         # Cosine Similarity load
         taste_sim = np.load('recommend_by_person/outputs/taste_sim.npy')
@@ -86,6 +89,6 @@ class recommendation_system:
         beer_db = BeerRepository()
         
         for beer_idx in beer_idxes:
-            beer_list.append(beer_db.recommended_beer_info(beer_idx))
+            beer_list.append(beer_db.recommended_beer_info(beer_idx + 1))
 
         return beer_list
