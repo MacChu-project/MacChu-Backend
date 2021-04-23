@@ -23,8 +23,9 @@ class ArticleSpider(scrapy.Spider):
         for item in response.css("ul.list_news li") :
             if item.css("a.info") :
                 url_list = item.css("a.info::attr(href)").getall()
-                url = url_list[1]
-                yield scrapy.Request(url, callback=self.parse_detail)
+                if len(url_list) > 1:
+                    url = url_list[1]
+                    yield scrapy.Request(url, callback=self.parse_detail)
         
         next_page = response.css('a.btn_next::attr(href)').get()
         if next_page is not None:
