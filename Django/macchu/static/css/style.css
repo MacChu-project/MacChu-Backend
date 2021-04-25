@@ -137,7 +137,7 @@ header {
 .main-nav a {
   color: var(--light);
   text-decoration: none;
-  margin: 5px 30px;
+  margin: 5px 10px;
   font-size: 25px; 
 }
 
@@ -163,7 +163,7 @@ header {
 
 /* MAIN CONTIANER */
 .main-container {
-  padding: 50px;
+  padding: 50px 50px;
   text-align: center;
 }
 
@@ -347,6 +347,8 @@ footer {
     "mn mn mn mn mn mn  mn mn mn mn";
   }
 
+
+
   .box {
     display: grid;
     grid-gap: 20px;
@@ -390,6 +392,26 @@ footer {
     padding-bottom: 20px;
   }
 
+  .location{
+    width:80%;
+  }
+
+  #search_type{
+    margin: 10px auto;
+    width:20%;
+    font-size:13px;
+  }
+
+  #search-data-input{
+    width:50%;
+    font-size:13px;
+  }
+
+  .search_button{
+    width:20%;
+    font-size:13px;
+  }
+
   .box {
     display: grid;
     grid-gap: 20px;
@@ -428,7 +450,7 @@ footer {
     padding: 20px 0 0 0;
     position: static;
     display: grid;
-    grid-gap: 20px;
+    grid-gap: 0px;
     grid-template-columns: repeat(1, 1fr);
     grid-template-areas: 
     "nt"    
@@ -444,24 +466,51 @@ footer {
     padding-right: 20px;
   }
 
+  .beer-table{
+    font-size:10px;
+  }
+
   div#logo{
     display:block;
+    font-size:20px; 
   }
 
 
   .main-nav {
-    display: grid;
+    display:block;
     grid-gap: 0px;
     grid-template-columns: repeat(1, 1fr);
-    margin-left:0px;
+    padding:0px 10px;
     text-align: center;
+    
+  }
+  .main-nav a{
+    display:block;
+    font-size: 15px;
+  }
+
+  .main-container{
+    padding:0px 50px;
+    margin-top:50px;
   }
 
   h1 {
     text-align: center;
     font-size: 18px;
+
   }
 
+  .recommendation-header{
+    font-size:30px;
+
+  }
+
+
+
+  .location h1{
+    margin-top:0px;
+    padding-top:30px;
+  }
  
 
   .box {
