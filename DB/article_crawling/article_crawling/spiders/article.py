@@ -40,4 +40,5 @@ class ArticleSpider(scrapy.Spider):
         item['date']=response.css("div.sponsor span.t11::text").get()
         item['logo']=response.css("div.press_logo img::attr(title)").get()
         
-        yield item
+        if item['title'] != None:
+            yield item
