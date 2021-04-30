@@ -25,7 +25,7 @@ class recommendation_system:
             beers.append(beer-1) 
 
         # Cosine Similarity load
-        taste_sim = np.load('recommend_by_person/outputs/taste_sim.npy')
+        taste_sim = np.load('/static/outputs/taste_sim.npy')
 
         recommended_beers = self.find_sim_beer(beer_df, taste_sim, beers)
 
