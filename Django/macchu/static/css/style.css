@@ -5,6 +5,15 @@
   --dark: 	#686868;
 }
 
+a{
+  text-decoration: None;
+  color:white;
+  font-weight: 900;
+}
+p{
+  margin:2px;
+}
+
 html, body {
   width: 100vw;
   min-height: 100vh;
@@ -53,6 +62,34 @@ h1 {
   background: linear-gradient(45deg, #FFAF00, #ffdb8c);
   border-radius: 10px;
 }
+
+.news-search-box{
+  padding-top:10px;
+  width:100%;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(1, 3fr 1fr);
+}
+
+.news-search-button{
+  height:50px;
+  width:100%;
+  font-size: 20px;
+  background: linear-gradient(45deg, #FFAF00, #ffdb8c);
+  border-radius: 10px;
+}
+
+#news-search-data-input{
+  background-color: #282828;
+  color:#999999;
+  width:100%;
+  height:50px;
+  border-radius: 10px;
+  font-size: 20px;
+}
+
+
+
 
 .recommendation-header{
   text-align: center;
@@ -180,6 +217,34 @@ header {
   text-decoration: none;
   font-size: 15px;
 }
+
+.news-box {
+  display: grid;
+  grid-gap: 3px;
+  grid-template-columns: repeat(1, 2fr 1fr);
+  border: none;
+  text-decoration: none;
+  border-radius:10px;
+  font-size: 15px;
+  background: linear-gradient(45deg, #282828, #5a5a5a);
+
+}
+
+
+.news-table{
+  width:100%;
+
+}
+
+thead.news-thead th tr{
+  text-align:center;
+}
+
+.count-news{
+  padding-top:75px;
+  padding-left:20px;
+}
+
 .recommend-button{
   width:500px;
   height:50px;
@@ -266,6 +331,11 @@ header {
   margin-top:30px;
   border-radius:30px;
   background: linear-gradient(to bottom, black, #5a5a5a);
+}
+
+.search-news-table{
+  width:100%;
+  padding:30px;
 }
 
 .box a {
@@ -392,6 +462,10 @@ footer {
     padding-bottom: 20px;
   }
 
+  .recommend-system-reroad{
+    width:100%;
+  }
+
   .location{
     width:80%;
   }
@@ -410,6 +484,11 @@ footer {
   .search_button{
     width:20%;
     font-size:13px;
+  }
+
+  .news-box{
+    grid-gap: 50px;
+    grid-template-columns: repeat(1, 1fr);
   }
 
   .box {

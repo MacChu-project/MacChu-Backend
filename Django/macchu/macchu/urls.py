@@ -26,4 +26,5 @@ urlpatterns = [
 
     path('recommend_by_person/', include('recommend_by_person.urls')),
     path('search_beer/', include('search_beer.urls')),
+    path('beer_news/', include('beer_news.urls')),
 ]

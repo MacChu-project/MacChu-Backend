@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     'recommend_by_person.apps.RecommendByPersonConfig',
     'search_beer.apps.SearchBeerConfig',
+    'beer_news.apps.BeerNewsConfig',
 ]
 
 MIDDLEWARE = [

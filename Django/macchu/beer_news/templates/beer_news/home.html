@@ -1,0 +1,146 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>MacChu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js" integrity="sha384-3LK/3kTpDE/Pkp8gTNp2gR/2gOiwQ6QaO7Td0zV76UFJVhqLl4Vl3KL1We6q6wR9" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel='stylesheet' href='/static/css/style.css'>
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <!-- HEADER -->
+      <header>
+        <div class="netflixLogo">
+          <a id="logo" href="{% url 'home' %}"><div id='logo'>MacChu</div></a>
+        </div>      
+        <nav class="main-nav">                
+          <a href="{% url 'home' %}">Home</a>
+          <a href="{% url 'recommend' %}">Beer Recommend</a>
+          <a href="{% url 'search_beer' %}">Search Beer</a>
+          <a href="{% url 'beer_news' %}">News</a>
+      </header>
+      <!-- END OF HEADER -->
+      
+      <!-- MAIN CONTAINER -->
+      <section class="main-container" >
+        <div class="location" id="home">
+          <h1 id="home">News</h1>
+          <div class="news-box" id='news_box'>
+            <div class='search-box'>
+              <form class='news-search-box'>
+                <input id='news-search-data-input'type='text'>
+                <button class='news-search-button'>Search</button>
+              </form>
+              <div class='search-table'>
+                <table class='search-news-table result-table'>
+                  <thead class='search-news-thead'>
+                    <tr>
+                      <th>최신 뉴스</th>
+                    </th>
+                  </thead>
+                  <tbody class='search-news-tbody'>
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="count-news">
+              <div class='search-table'>
+                <table class='search-news-table'>
+                  <thead class='search-news-thead'>
+                    <tr>
+                      <th>최근 많이 본 뉴스</th>
+                    </th>
+                  </thead>
+                  <tbody class='count-news-tbody'>
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
+
+      </section>
+      <!-- FOOTER -->
+      
+      <footer>
+        <p>&copy 2021 MacChu, Inc.</p>
+        <p>MacChu &copy 2021</p>
+      </footer>
+    </div>
+  </body>
+</html>
+
+<script type='text/javascript'>
+  $(function(){
+    var search_view_count = 0;
+    var search_view_count_limit = 10;
+    $.ajax({
+      'url':'/beer_news/before',
+      'method':'GET',
+      'data-type':'json',
+      'success': function(news_data, status, xhr){
+        for(i=0;i<news_data[0].length;i++){
+          var td = $('<td></td>').attr('style','border-bottom:0.5px solid white;padding:2px 10px;');
+          var tr = $('<tr></tr>');
+          $('<p></p>').append($('<a></a>').attr('href', news_data[0][i]['news_url']).text(news_data[0][i]['news_title'])).appendTo(td);
+          $('<p></p>').text(news_data[0][i]['news_date']).appendTo(td);
+          // $('<p></p>').text(news_data[i]['news_content']).appendTo(td);
+          td.appendTo(tr);
+          tr.appendTo($('.search-news-tbody'));
+
+        }
+        
+
+        for(var i=0;i<news_data[1].length;i++){
+          var td = $('<td></td>').attr('style','border-bottom:0.5px solid white;padding:2px 10px;');
+          var tr = $('<tr></tr>');
+          $('<p></p>').append($('<a></a>').attr('href', news_data[1][i]['news_url']).text(news_data[0][i]['news_title'])).appendTo(td);
+          $('<p></p>').text(news_data[1][i]['news_date']).appendTo(td);
+          // $('<p></p>').text(news_data[i]['news_content']).appendTo(td);
+          td.appendTo(tr);
+          tr.appendTo($('.count-news-tbody'));
+
+        }
+        
+      },
+      'error':function(xhr, status, err){
+        alert(err);  
+      }
+      
+    });
+    $('.news-search-button').on('click',function(event){
+      event.preventDefault();
+      event.stopPropagation();
+      const search_news = $('#news-search-data-input').val();
+      $.ajax({
+        'url':'/beer_news/result',
+        'method':'GET',
+        'data-type':'json',
+        'data':{'name':search_news},
+        'success': function(news_data, status, xhr){
+          $('.search-news-tbody').empty();
+          for(var i=0;i < 20;i++){
+            var td = $('<td></td>').attr('style','border-bottom:0.5px solid white;padding:2px 10px;');
+            var tr = $('<tr></tr>');
+            $('<p></p>').append($('<a></a>').attr('href', news_data[i]['news_url']).text(news_data[i]['news_title'])).appendTo(td);
+            $('<p></p>').text(news_data[i]['news_date']).appendTo(td);
+            // $('<p></p>').text(news_data[i]['news_content']).appendTo(td);
+            td.appendTo(tr);
+            tr.appendTo($('.search-news-tbody'));
+          }
+        },
+        'error':function(xhr, status, err){
+          alert(err);  
+        }
+      });
+
+    });
+  });
+</script>
