@@ -9,8 +9,7 @@ import scrapy
 class ArticleCrawlingItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    title = scrapy.Field()
-    text = scrapy.Field()
-    date = scrapy.Field()
-    logo = scrapy.Field()
-    url = scrapy.Field()
+    news_title = scrapy.Field()
+    news_content = scrapy.Field()
+    news_date = scrapy.Field()
+    news_url = scrapy.Field()

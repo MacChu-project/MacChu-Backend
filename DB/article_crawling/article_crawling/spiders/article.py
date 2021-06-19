@@ -34,11 +34,20 @@ class ArticleSpider(scrapy.Spider):
 
     def parse_detail(self, response):   
         item = ArticleCrawlingItem()
-        item['url']=response.url
-        item['title']=response.css("h3#articleTitle::text").get()
-        item['text']=''.join(response.css("div#articleBodyContents::text").getall()).replace("\n","").strip()
-        item['date']=response.css("div.sponsor span.t11::text").get()
-        item['logo']=response.css("div.press_logo img::attr(title)").get()
+        item['news_url']=response.url
+        item['news_title']=response.css("h3#articleTitle::text").get()
+        item['news_content']=''.join(response.css("div#articleBodyContents::text").getall()).replace("\n","").strip()
+        raw_date = response.css("div.sponsor span.t11::text").get()
+
+        if raw_date[12:14] == '오후':
+            date_data = raw_date[0:4] + '-' + raw_date[5:7] + '-' + raw_date[8:10] + ' ' + str(int(raw_date[-5:-3].split()[0])+12) + raw_date[-3:] + ':00'
+        else:
+            if len(raw_date[-5:-3].split()[0]) == 1:
+                date_data = raw_date[0:4] + '-' + raw_date[5:7] + '-' + raw_date[8:10] + ' 0' + raw_date[-5:-3].split()[0] + raw_date[-3:] + ':00'
+            else:
+                date_data = raw_date[0:4] + '-' + raw_date[5:7] + '-' + raw_date[8:10] + ' ' + raw_date[-5:-3].split()[0] + raw_date[-3:] + ':00'
+
+        item['news_date'] = date_data
         
-        if item['title'] != None:
+        if item['news_title'] != None:
             yield item
